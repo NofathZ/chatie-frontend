@@ -1,24 +1,35 @@
+import React, { Suspense, lazy } from 'react';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import Chat from './views/Chat'
+import Signup from './views/Signup'
+import Login from './views/Login'
+
 
 function App() {
+  // const Home = lazy(() => import('./routes/Home'));
+  const Signup = lazy(() => import('./views/Signup'))
+  const Login = lazy(() => import('./views/Login'))
+  const Chat = lazy(() => import('./views/Chat'))
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="background-page">
+        <div className="page-container">
+          <Suspense fallback={<div>Login . . . </div>}>
+            <Switch>
+              <Route exact path="/">
+                <Redirect to="/login" />
+              </Route>
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/register" component={Signup} />
+              <Route exact path="/chat" component={Chat} />
+            </Switch>
+          </Suspense>
+        </div>
+      </div>
+    </Router>
   );
 }
 

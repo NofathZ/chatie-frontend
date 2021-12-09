@@ -1,0 +1,26 @@
+* {
+  color: white;
+}
+
+.background-page {
+  background-color: #090e11;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-container {
+  background-color: #262d31;
+  width: 90%;
+  height: 90%;
+  display: flex;
+}
+
+@media screen and (max-width: 1500px) {
+  .page-container {
+    width: 100vw;
+    height: 100vh;
+  }
+}
